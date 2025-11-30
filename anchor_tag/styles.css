@@ -1,0 +1,129 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.anchors {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.anchors a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.anchors a:nth-child(1)::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #FF5733;
+    transition: width 0.3s;
+    margin: auto;
+    /* Centers the line */
+}
+
+.anchors a:nth-child(1):hover::after {
+    width: 100%;
+}
+
+.anchors a:nth-child(2) {
+    transition: all 0.3s ease;
+}
+
+.anchors a:nth-child(3) {
+    background: none;
+    color: #888;
+}
+
+.anchors a:nth-child(3)::before,
+.anchors a:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+/* Top Left Corner */
+.anchors a:nth-child(3)::before {
+    top: 0;
+    left: 0;
+}
+
+/* Bottom Right Corner */
+.anchors a:nth-child(3)::after {
+    bottom: 0;
+    right: 0;
+}
+
+.anchors a:nth-child(3):hover::before {
+    border-top-color: #9C27B0;
+    border-left-color: #9C27B0;
+    width: 100%;
+    height: 100%;
+}
+
+.anchors a:nth-child(3):hover::after {
+    border-bottom-color: #9C27B0;
+    border-right-color: #9C27B0;
+    width: 100%;
+    height: 100%;
+}
+
+.anchors a:nth-child(2):hover {
+    transform: translateY(-5px);
+    background-color: #337AFF;
+    color: white;
+    box-shadow: 0 10px 20px rgba(51, 122, 255, 0.4);
+}
+
+.anchors a:nth-child(4) {
+    color: #000;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.anchors a:nth-child(4)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5dd62c;
+    z-index: -1;
+
+    /* PERFORMANCE UPGRADE: Use transform instead of width */
+    transform: scaleX(0);
+    transform-origin: right;
+    /* Sets exit direction */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.anchors a:nth-child(4):hover {
+    color: white;
+    border-color: #5dd62c;
+}
+
+.anchors a:nth-child(4):hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
