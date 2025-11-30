@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Poppins:wght@300;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+    max-width: 1200px;
+    height: 600px;
+}
+
+.panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+
+    /* The Magic: Flex grows the active panel, shrinks others */
+    flex: 0.5;
+    margin: 10px;
+    position: relative;
+
+    transition: flex 0.7s cubic-bezier(0.05, 0.6, 0.4, 0.9);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Overlay for text readability */
+.panel::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    transition: height 0.5s ease;
+}
+
+/* The Active state here (Expanded) */
+.panel.active {
+    flex: 5;
+    /* This panel takes up 5x more space than others */
+    border-radius: 20px;
+}
+
+.panel.active::before {
+    height: 50%;
+
+}
+
+/* ext Styling & Animation */
+.panel-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease-in 0.2s;
+    /* Delay makes it appear after expansion */
+}
+
+.panel.active .panel-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #4da6ff;
+    text-shadow: 0 0 10px rgba(77, 166, 255, 0.6);
+}
+
+.panel p {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    color: #ddd;
+}
+
+/* Hover Effects for Inactive Panels */
+.panel:not(.active):hover {
+    flex: 0.7;
+    /* Grows slightly on hover */
+    filter: brightness(1.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .container {
+        width: 100vw;
+    }
+
+    .panel:nth-child(4),
+    .panel:nth-child(5) {
+        display: none;
+    }
+
+
+}
